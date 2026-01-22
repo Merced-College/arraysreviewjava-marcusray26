@@ -4,9 +4,9 @@ import java.util.Scanner;
 public class BlackJack {
 
     //string and int initializing
-    private static final String[] SUITS = { "Hearts", "Diamonds", "Clubs", "Spades" };
+    private static final String[] SUITS = { "Hearts", "Diamonds", "Clubs", "Spades" }; // suits
     private static final String[] RANKS = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King",
-            "Ace" };
+            "Ace" }; // ranks
     private static final int[] DECK = new int[52];
     private static int currentCardIndex = 0;
 
@@ -48,7 +48,7 @@ public class BlackJack {
     // shuffle method
     private static void shuffleDeck() {
         Random random = new Random();
-        for (int i = 0; i < DECK.length; i++) {
+        for (int i = 0; i < DECK.length; i++) { 
             int index = random.nextInt(DECK.length);
             int temp = DECK[i];
             DECK[i] = DECK[index];
@@ -61,7 +61,8 @@ public class BlackJack {
             System.out.println(DECK[i] + " ");
         }
     }
-
+    
+    // deals and prints player cards to console
     private static int dealInitialPlayerCards() {
         int card1 = dealCard();
         int card2 = dealCard();
@@ -70,17 +71,19 @@ public class BlackJack {
         return cardValue(card1) + cardValue(card2);
     }
 
+    
     private static int dealInitialDealerCards() {
-        int card1 = dealCard();
-        System.out.println("Dealer's card: " + RANKS[card1] + " of " + SUITS[DECK[currentCardIndex] % 4]);
+        int card1 = dealCard(); // deals
+        System.out.println("Dealer's card: " + RANKS[card1] + " of " + SUITS[DECK[currentCardIndex] % 4]); // prints to console
         return cardValue(card1);
     }
 
+    // hit or stand function
     private static int playerTurn(Scanner scanner, int playerTotal) {
         while (true) {
             System.out.println("Your total is " + playerTotal + ". Do you want to hit or stand?");
             String action = scanner.nextLine().toLowerCase();
-            if (action.equals("hit")) {
+            if (action.equals("hit")) { // hit
                 int newCard = dealCard();
                 playerTotal += cardValue(newCard);
                 System.out.println("new card index is " + newCard);
@@ -88,7 +91,7 @@ public class BlackJack {
                 if (playerTotal > 21) {
                     break;
                 }
-            } else if (action.equals("stand")) {
+            } else if (action.equals("stand")) { // stand, does nothing
                 break;
             } else {
                 System.out.println("Invalid action. Please type 'hit' or 'stand'.");
@@ -97,6 +100,7 @@ public class BlackJack {
         return playerTotal;
     }
 
+    // dealer stand function
     private static int dealerTurn(int dealerTotal) {
         while (dealerTotal < 17) {
             int newCard = dealCard();
@@ -106,6 +110,7 @@ public class BlackJack {
         return dealerTotal;
     }
 
+    // determined winnner
     private static void determineWinner(int playerTotal, int dealerTotal) {
         if (dealerTotal > 21 || playerTotal > dealerTotal) {
             System.out.println("You win!");
@@ -116,6 +121,7 @@ public class BlackJack {
         }
     }
 
+    // determines what card is dealt
     private static int dealCard() {
         return DECK[currentCardIndex++] % 13;
     }
@@ -123,7 +129,8 @@ public class BlackJack {
     private static int cardValue(int card) {
         return card < 9 ? card + 2 : 10;
     }
-
+    
+    // card index
     int linearSearch(int[] numbers, int key) {
         int i = 0;
         for (i = 0; i < numbers.length; i++) {
