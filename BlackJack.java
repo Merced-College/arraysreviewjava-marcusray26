@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class BlackJack {
 
+    //string and int initializing
     private static final String[] SUITS = { "Hearts", "Diamonds", "Clubs", "Spades" };
     private static final String[] RANKS = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King",
             "Ace" };
@@ -10,32 +11,41 @@ public class BlackJack {
     private static int currentCardIndex = 0;
 
     public static void main(String[] args) {
+
+        //get player input
         Scanner scanner = new Scanner(System.in);
 
+        // card methods
         initializeDeck();
         shuffleDeck();
 
+        // player + dealer card initialized to method
         int playerTotal = dealInitialPlayerCards();
         int dealerTotal = dealInitialDealerCards();
 
+        // Player input
         playerTotal = playerTurn(scanner, playerTotal);
         if (playerTotal > 21) {
             System.out.println("You busted! Dealer wins.");
             return;
         }
-
+        
+        // dealer method
         dealerTotal = dealerTurn(dealerTotal);
         determineWinner(playerTotal, dealerTotal);
 
+        //close player input
         scanner.close();
     }
-
+    
+    // initialize method
     private static void initializeDeck() {
         for (int i = 0; i < DECK.length; i++) {
             DECK[i] = i;
         }
     }
-
+    
+    // shuffle method
     private static void shuffleDeck() {
         Random random = new Random();
         for (int i = 0; i < DECK.length; i++) {
@@ -44,6 +54,8 @@ public class BlackJack {
             DECK[i] = DECK[index];
             DECK[index] = temp;
         }
+
+        //prints deck
         System.out.println("printed deck");
         for (int i = 0; i < DECK.length; i++) {
             System.out.println(DECK[i] + " ");
