@@ -1,3 +1,7 @@
+// Marcus Ray
+// 1.23.26
+// Black Jack
+
 import java.util.Random;
 import java.util.Scanner;
 
