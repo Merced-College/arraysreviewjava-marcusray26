@@ -1,4 +1,4 @@
-// Marcus Ray
+// Marcus Ray, Nicolas Rigers, Alexander Oates
 // 1.23.26
 // Black Jack
 
